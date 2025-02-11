@@ -79,21 +79,21 @@ export default function ShowGroupsScreen({ navigation, route }: Props) {
 
     const handleScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         if (!flatListRef.current) return;
-      
+
         const contentWidth = event.nativeEvent.contentSize.width;
         const layoutWidth = event.nativeEvent.layoutMeasurement.width;
         const contentOffsetX = event.nativeEvent.contentOffset.x;
-      
+
         // Verifica se chegou ao final
         if (contentOffsetX + layoutWidth >= contentWidth - 1) {
-          flatListRef.current.scrollToIndex({ index: 0, animated: true });
+            flatListRef.current.scrollToIndex({ index: 0, animated: true });
         }
-      };
+    };
 
     return (
         <View style={styles.mainScreenHome}>
             <TopBarApp />
-            <View style={{ flexDirection: "row", paddingTop: scaleFont(50), paddingLeft: scaleFont(30) }}>
+            <View style={styles.telaGroups}>
                 <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }} onPress={() => navigation.goBack()}>
                     <Icon name='arrow-back' color={COR.vermelho} size={scaleFont(30)} style={{ paddingRight: scaleFont(10) }} />
                     <Icon name={groupId === "001" ? 'people' : groupId === "002" ? 'local-movies' : 'menu-book'} color={COR.vermelho} size={scaleFont(40)} />
@@ -126,18 +126,18 @@ export default function ShowGroupsScreen({ navigation, route }: Props) {
                     renderItem={({ item }) => {
                         const dataSource = groupId === "001" ? cards : groupId === "002" ? cards2 : cards3;
                         return (
-                            <View style={{ width: width * 0.98,height, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                            <View style={styles.viewCardGroups}>
                                 {[0, 1, 2, 3].map(offset => {
                                     const card = dataSource[(currentIndex * 4) + offset];
                                     return card ? (
-                                        <View key={card.id} style={{ width: width / 2.2, height: height / 3, padding: scaleHeight(8), alignItems: 'center', justifyContent: 'center' }}>
+                                        <View key={card.id} style={styles.viewCardDivisorGroups}>
                                             <Image source={card.image} style={{ width: "100%", height: "100%", resizeMode: "stretch" }} />
                                             <LinearGradient
                                                 colors={[COR.vermelho, "transparent"]}
                                                 start={[0, 0]}
                                                 end={[0, 1]}
                                                 locations={[0.1, 1]}
-                                                style={{ marginTop: scaleHeight(-120), width: "100%", height: "50%", borderRadius: scaleFont(30) }}
+                                                style={styles.gradientCardGroups}
                                             >
                                                 <Text style={{ fontSize: scaleFont(16), color: COR.branco, alignSelf: "center", paddingTop: scaleFont(10), fontWeight: "bold" }}>
                                                     {card.title}
@@ -235,16 +235,7 @@ export default function ShowGroupsScreen({ navigation, route }: Props) {
                                 </View>
 
 
-                                <TouchableOpacity style={{
-                                    width: scaleWidth(42),
-                                    height: scaleHeight(42),
-                                    borderWidth: scaleFont(3),
-                                    borderColor: COR.branco,
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    borderRadius: scaleFont(30),
-                                    alignSelf: "flex-end"
-                                }} onPress={() => setSelectedCard(null)}>
+                                <TouchableOpacity style={styles.butonCloseGroups} onPress={() => setSelectedCard(null)}>
                                     <Text style={{
                                         color: COR.branco,
                                         fontSize: scaleFont(25),

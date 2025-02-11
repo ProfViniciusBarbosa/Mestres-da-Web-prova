@@ -1,6 +1,8 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import COR from "../constants/COR";
 import { scaleWidth, scaleHeight, scaleFont } from "../utils/responsive";
+
+const { width, height } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
     container: {
@@ -295,7 +297,7 @@ export const styles = StyleSheet.create({
         color: COR.vermelho,
         fontSize: scaleFont(12),
         paddingTop: scaleHeight(5),
-        paddingBottom:scaleHeight(5),
+        paddingBottom: scaleHeight(5),
     },
     imagePart: {
         width: "21%",
@@ -321,38 +323,74 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: scaleWidth(20),
-      },
-      menuIcon: {
+    },
+    menuIcon: {
         height: scaleHeight(23),
         width: scaleWidth(28),
-      },
-      marvelLogo: {
+    },
+    marvelLogo: {
         width: scaleWidth(120),
-      },
-      modalBackground: {
+    },
+    modalBackground: {
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.8)', // Escurece o fundo
-      },
-      menuContainer: {
+    },
+    menuContainer: {
         position: 'absolute',
         top: scaleFont(10),
         backgroundColor: COR.preto,
         padding: scaleFont(10),
         width: scaleWidth(200),
         borderRadius: scaleFont(20),
-      },
-      profileContainer: {
+    },
+    profileContainer: {
         alignItems: 'center',
         padding: scaleWidth(10),
-      },
-      profileImage: {
+    },
+    profileImage: {
         width: scaleWidth(50),
         height: scaleFont(50),
         borderRadius: scaleFont(25),
         alignSelf: 'baseline',
-      },
-      menuItem: {
+    },
+    menuItem: {
         color: COR.vermelho,
         fontSize: scaleFont(18),
-      },
+    },
+    telaGroups: {
+        flexDirection: "row",
+        paddingTop: scaleFont(50),
+        paddingLeft: scaleFont(30)
+    },
+    viewCardGroups: {
+        width: width * 0.98,
+        height,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+    viewCardDivisorGroups: {
+        width: width / 2.2,
+        height: height / 3,
+        padding: scaleHeight(8),
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    gradientCardGroups: {
+        marginTop: scaleHeight(-120),
+        width: "100%",
+        height: "50%",
+        borderRadius: scaleFont(30)
+    },
+    butonCloseGroups:{
+        width: scaleWidth(42),
+        height: scaleHeight(42),
+        borderWidth: scaleFont(3),
+        borderColor: COR.branco,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: scaleFont(30),
+        alignSelf: "flex-end",
+    }
 });
